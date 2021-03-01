@@ -35,30 +35,36 @@ function generatePassword(){
   var bNumberChar = window.confirm("Would you like numbers?");
   var bSpecialChar = window.confirm("Would you like special characters?");
 
-  var arraySelector = 0;
+  var arraySelector = [];
+  var difArrays = 1;
+  arraySelector.push(0);
   var passChar = [];
   var code = lowCharArr[Math.floor(Math.random() * lowCharArr.length)];
   passChar.push(String.fromCharCode(code));
 
   if(bCapitalChar){
-    arraySelector++;
+    arraySelector.push(1);
+    difArrays++;
     code = capCharArr[Math.floor(Math.random() * lowCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
   if(bNumberChar){
-    arraySelector++;
+    arraySelector.push(2);
+    difArrays++;
     code = numCharArr[Math.floor(Math.random() * lowCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
   if(bSpecialChar){
-    arraySelector++;
+    arraySelector.push(3);
+    difArrays++;
     code = speCharArr[Math.floor(Math.random() * lowCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
 
   var i = 0;
   for (i; i < charCount; i++){
-    var arrChoose = Math.floor(Math.random() * arraySelector);
+    var arrRand = Math.floor(Math.random() * difArrays);
+    var arrChoose = arraySelector[arrRand];
 
     switch(arrChoose){
       case 0:
@@ -83,12 +89,15 @@ function generatePassword(){
         break;
     }
   }
+
+  // TODO: shuffler here.
 }
 
 //// TODO: Set up prompts
 //// TODO: Set up character arrays
 // TODO:  Could I do this with math.random and randomizing over 4 different random statements instead?
 // TODO:  No, because certain arrays are separated and have a different base value than just 0.
+// TODO: Check if between 8 and 128
 
 // TODO: Randomly Choose from arrays based on how many characters are requested
 // TODO: Guarantee that at least one of each selected character type is included
