@@ -36,7 +36,6 @@ function generatePassword(){
   var bSpecialChar = window.confirm("Would you like special characters?");
 
   var arraySelector = [];
-  var difArrays = 1;
   arraySelector.push(0);
   var passChar = [];
   var code = lowCharArr[Math.floor(Math.random() * lowCharArr.length)];
@@ -44,26 +43,23 @@ function generatePassword(){
 
   if(bCapitalChar){
     arraySelector.push(1);
-    difArrays++;
     code = capCharArr[Math.floor(Math.random() * lowCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
   if(bNumberChar){
     arraySelector.push(2);
-    difArrays++;
     code = numCharArr[Math.floor(Math.random() * lowCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
   if(bSpecialChar){
     arraySelector.push(3);
-    difArrays++;
     code = speCharArr[Math.floor(Math.random() * lowCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
 
   var i = 0;
   for (i; i < charCount; i++){
-    var arrRand = Math.floor(Math.random() * difArrays);
+    var arrRand = Math.floor(Math.random() * arraySelector.length);
     var arrChoose = arraySelector[arrRand];
 
     switch(arrChoose){
