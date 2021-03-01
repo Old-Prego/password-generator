@@ -28,9 +28,32 @@ var capCharArr = genArray(65,90);
 var numCharArr = genArray(48, 57);
 var speCharArr = genArray(33,47).concat(genArray(58,64)).concat(genArray(91,96)).concat(genArray(123,126));
 
+function fisherShuffle(array){
+  var m = array.length;
+  var t;
+  var i;
+
+  // While there are still values in the original array
+  while (m) {
+
+    // Select an array value
+    i = Math.floor(Math.random() * m--);
+
+    // Swap it with the currently selected element;
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+}
 
 function generatePassword(){
   var charCount = prompt("How many characters do you want? (Between 8 and 128)");
+  if(charCount > 128 || charCount < 8){
+    window.alert("This number of characters is not within the allowed limits: " + charCount);
+    return;
+  }
   var bCapitalChar = window.confirm("Would you like capitalized characters?");
   var bNumberChar = window.confirm("Would you like numbers?");
   var bSpecialChar = window.confirm("Would you like special characters?");
@@ -43,19 +66,20 @@ function generatePassword(){
 
   if(bCapitalChar){
     arraySelector.push(1);
-    code = capCharArr[Math.floor(Math.random() * lowCharArr.length)];
+    code = capCharArr[Math.floor(Math.random() * capCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
   if(bNumberChar){
     arraySelector.push(2);
-    code = numCharArr[Math.floor(Math.random() * lowCharArr.length)];
+    code = numCharArr[Math.floor(Math.random() * numCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
   if(bSpecialChar){
     arraySelector.push(3);
-    code = speCharArr[Math.floor(Math.random() * lowCharArr.length)];
+    code = speCharArr[Math.floor(Math.random() * speCharArr.length)];
     passChar.push(String.fromCharCode(code));
   }
+  charCount = charCount - 4;
 
   var i = 0;
   for (i; i < charCount; i++){
@@ -70,23 +94,26 @@ function generatePassword(){
         break;
       case 1:
         // Placeholder
-        code = capCharArr[Math.floor(Math.random() * lowCharArr.length)];
+        code = capCharArr[Math.floor(Math.random() * capCharArr.length)];
         passChar.push(String.fromCharCode(code));
         break;
       case 2:
         // Placeholder
-        code = numCharArr[Math.floor(Math.random() * lowCharArr.length)];
+        code = numCharArr[Math.floor(Math.random() * numCharArr.length)];
         passChar.push(String.fromCharCode(code));
         break;
       case 3: 
         // Placeholder
-        code = speCharArr[Math.floor(Math.random() * lowCharArr.length)];
+        code = speCharArr[Math.floor(Math.random() * speCharArr.length)];
         passChar.push(String.fromCharCode(code));
         break;
     }
+
   }
 
-  // TODO: shuffler here.
+  fisherShuffle(passChar);
+  
+
 }
 
 //// TODO: Set up prompts
