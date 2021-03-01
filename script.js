@@ -136,14 +136,3 @@ function generatePassword(){
   return(passChar.join(""));
 
 }
-
-//// TODO: Set up prompts
-//// TODO: Set up character arrays
-//// TODO:  Could I do this with math.random and randomizing over 4 different random statements instead?
-//// TODO:  No, because certain arrays are separated and have a different base value than just 0.
-//// TODO: Check if between 8 and 128
-
-// TODO: Randomly Choose from arrays based on how many characters are requested
-// TODO: Guarantee that at least one of each selected character type is included
-// TODO:  Maybe check if I can loop once through each array first and then at the end shuffle them.
-// TODO:  Use Fisher-Yates shuffle, which is apparently the standard. 
