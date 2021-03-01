@@ -30,12 +30,12 @@ var speCharArr = genArray(33,47).concat(genArray(58,64)).concat(genArray(91,96))
 
 
 function generatePassword(){
-  var characterAmount = prompt("How many characters do you want? (Between 8 and 128)");
+  var charCount = prompt("How many characters do you want? (Between 8 and 128)");
   var bCapitalChar = window.confirm("Would you like capitalized characters?");
   var bNumberChar = window.confirm("Would you like numbers?");
   var bSpecialChar = window.confirm("Would you like special characters?");
 
-  var arraySelector = 1;
+  var arraySelector = 0;
   var passChar = [];
   var code = lowCharArr[Math.floor(Math.random() * lowCharArr.length)];
   passChar.push(String.fromCharCode(code));
@@ -56,10 +56,37 @@ function generatePassword(){
     passChar.push(String.fromCharCode(code));
   }
 
+  var i = 0;
+  for (i; i < charCount; i++){
+    var arrChoose = Math.floor(Math.random() * arraySelector);
+
+    switch(arrChoose){
+      case 0:
+        // Placeholder
+        code = lowCharArr[Math.floor(Math.random() * lowCharArr.length)];
+        passChar.push(String.fromCharCode(code));
+        break;
+      case 1:
+        // Placeholder
+        code = capCharArr[Math.floor(Math.random() * lowCharArr.length)];
+        passChar.push(String.fromCharCode(code));
+        break;
+      case 2:
+        // Placeholder
+        code = numCharArr[Math.floor(Math.random() * lowCharArr.length)];
+        passChar.push(String.fromCharCode(code));
+        break;
+      case 3: 
+        // Placeholder
+        code = speCharArr[Math.floor(Math.random() * lowCharArr.length)];
+        passChar.push(String.fromCharCode(code));
+        break;
+    }
+  }
 }
 
 //// TODO: Set up prompts
-// TODO: Set up character arrays
+//// TODO: Set up character arrays
 // TODO:  Could I do this with math.random and randomizing over 4 different random statements instead?
 // TODO:  No, because certain arrays are separated and have a different base value than just 0.
 
